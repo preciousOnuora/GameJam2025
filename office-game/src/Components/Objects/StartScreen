@@ -1,0 +1,40 @@
+import { useState } from "react";
+import StartImg from "../../sprites/objects/StartScreen/Start.png";       // background image
+import StartButton from "../../sprites/objects/StartScreen/StartButton.png"; // button image
+
+export default function GameWithStartScreen() {
+  const [started, setStarted] = useState(false);
+
+  return (
+    <div className="relative h-screen w-screen overflow-hidden">
+      {/* Game layer (always in the background) */}
+      <div className="h-full w-full bg-black flex items-center justify-center text-white text-3xl">
+        {started ? "Game Started!" : "Game Not Started"}s
+      </div>
+
+      {/* Start Screen overlay (only before started) */}
+      {!started && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          {/* Background image */}
+          <img
+            src={StartImg}
+            alt="Start Screen"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+          />
+
+          {/* Start button image */}
+          <button
+            onClick={() => setStarted(true)}
+            className="bg-transparent border-none cursor-pointer"
+          >
+            <img
+              src={StartButton}
+              alt="Start Game"
+              className="w-48 hover:scale-110 transition-transform"
+            />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
