@@ -14,29 +14,21 @@ export default function Stats({ stressPoints = 0, learningStat = 0, setLearningS
   }, [stressPoints]);
 
   return (
-    <div>
-      <nav style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        padding: '10px 20px',
-        backgroundColor: '#f8f9fa',
-        borderBottom: '2px solid #dee2e6',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        //width: '100%',
-        //boxSizing: 'border-box'
-      }}>
-        <Learning learningStat={learningStat} setLearning={setLearningStat} />
-        <PersonalWorkStat personalWorkStat={personalWorkStat} setPersonalWork={setPersonalWorkStat} />
-        <StressStat stressStat={stressPoints} setStress={setStress} />
-      </nav>
-      <div style={{ marginTop: '120px' }}>
-        {/* Content goes here - this pushes content below the fixed navbar */}
-      </div>
+    <div style={{
+      position: 'fixed',
+      top: '50%',
+      left: '20px',
+      transform: 'translateY(-50%)',
+      zIndex: 1000,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '18px',
+      alignItems: 'flex-start',
+      padding: '0'
+    }}>
+      <Learning learningStat={learningStat} setLearning={setLearningStat} />
+      <PersonalWorkStat personalWorkStat={personalWorkStat} setPersonalWork={setPersonalWorkStat} />
+      <StressStat stressStat={stressPoints} setStress={setStress} />
     </div>
   );
 }

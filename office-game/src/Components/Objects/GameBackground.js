@@ -15,7 +15,7 @@ function GameBackground() {
         backgroundSize: "contain", // Changed from "cover" to "contain"
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0", // Add background color for empty spaces
+        backgroundColor: "#ffffff", // White background
         zIndex: -1
       }}
     />

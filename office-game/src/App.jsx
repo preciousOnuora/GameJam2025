@@ -431,7 +431,7 @@ function App() {
       {/* Main Game (only show when game is started) */}
       {gameStarted && (
         <>
-          <h1 style={{ textAlign: "center" }}>🏦 Lloyds Bank Office Game</h1>
+          <h1 style={{ textAlign: "center", marginTop: "-0.2px", marginBottom: "-30px", backgroundColor: "#FFFFFF" }}>🏦 Jenny's First Day at Lloyds Bank </h1>
           <GameMap />
           <StatsComponent stressPoints={stressPoints} learningStat={learningStat} setLearningStat={setLearningStat} personalWorkStat={personalWorkStat} setPersonalWorkStat={setPersonalWorkStat} />
 
@@ -1255,13 +1255,13 @@ function App() {
         style={{ position: "absolute", bottom: "20px", left: "20px", cursor: "pointer", zIndex: 1100 }}
         onClick={() => setTaskSheetOpen(true)}
       >
-        <img src={StickyNoteImg} alt="Task Sheet" style={{ width: "60px", height: "60px" }} />
+        <img src={StickyNoteImg} alt="Task Sheet" style={{ width: "100px", height: "100px" }} />
       </div>
       {taskSheetOpen && (
         <div style={{
           position: "absolute", left: "50px", bottom: "100px",
           backgroundColor: "#222", border: "4px solid #FF69B4", padding: "20px",
-          zIndex: 1200, width: "300px", fontFamily: "'Press Start 2P', monospace",
+          zIndex: 1200, width: "350px", fontFamily: "'Press Start 2P', monospace",
           color: "#fff", textAlign: "left", boxShadow: "0 0 0 4px #444, 0 0 0 8px #FF69B4"
         }}>
           <h3 style={{ color: "#FF69B4", marginBottom: "10px" }}>📋 My Tasks</h3>

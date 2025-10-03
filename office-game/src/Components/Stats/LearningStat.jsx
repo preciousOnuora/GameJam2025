@@ -70,7 +70,6 @@ function LearningStat({ learningStat, setLearning }) {
             <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(5, 1fr)',
-                gap: '2px',
                 width: '150px'
             }}>
                 {createGridItems()}
