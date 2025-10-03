@@ -1,4 +1,4 @@
-function StressStat({ setStress }) {
+function StressStat({ stressStat = 0, setStress }) {
     // Define 5 different colors for the grid items
     const colors = [
         '#B80F0A', // Red
@@ -11,7 +11,6 @@ function StressStat({ setStress }) {
 
     // Define thresholds for when each item should be disabled
     // Each item gets disabled when stress score reaches a certain level
-    const stressStat = 0
     const stressScore = stressStat;
     const disableThresholds = [[0, 20], [20, 40], [40, 60], [60, 80], [80, 100]]; // These range from 0 to 100
 
@@ -20,8 +19,8 @@ function StressStat({ setStress }) {
         const items = [];
         
         for (let i = 0; i < 5; i++) {
-            const isDisabled = stressStat < disableThresholds[i][0];
-            const isRangeActive = stressStat >= disableThresholds[i][0];
+            const isDisabled = stressScore < disableThresholds[i][0];
+            const isRangeActive = stressScore >= disableThresholds[i][0];
             const itemStyle = {
                 backgroundColor: isRangeActive ? colors[i] : '#ddd',
                 opacity: isDisabled ? 0.1 : 1,
@@ -66,7 +65,7 @@ function StressStat({ setStress }) {
                 margin: '0 10px 0 0',
                 whiteSpace: 'nowrap'
             }}>
-                Stress: {stressStat}
+                Stress: {stressScore}
             </h3>
             <div style={{
                 display: 'grid',

@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Learning from './LearningStat.jsx';
-import PersonalWork from './PersonalWorkStat.jsx';
-import Project from './ProjectStat.jsx';
+import PersonalWorkStat from './PersonalWorkStat.jsx';
 import StressStat from './StressStat.jsx';
 
 
-export default function Stats() {
-  const [learningStat, setLearning] = useState(0);
-  const [personalWorkStat, setPersonalWork] = useState(0);
+export default function Stats({ stressPoints = 0, learningStat = 0, setLearningStat, personalWorkStat = 0, setPersonalWorkStat }) {
   const [projectStat, setProjectStat] = useState(0);
-  const [stressStat, setStress] = useState(0);
+  const [stressStat, setStress] = useState(stressPoints);
+
+  // Update stress stat when stressPoints prop changes
+  useEffect(() => {
+    setStress(stressPoints);
+  }, [stressPoints]);
 
   return (
     <div>
@@ -28,10 +30,9 @@ export default function Stats() {
         //width: '100%',
         //boxSizing: 'border-box'
       }}>
-        <Learning learningStat={learningStat} setLearning={setLearning} />
-        <PersonalWork personalWorkStat={personalWorkStat} setPersonalWork={setPersonalWork} />
-        <Project projectStat={projectStat} setProject={setProjectStat} />
-        <StressStat stressStat={stressStat} setStress={setStress} />
+        <Learning learningStat={learningStat} setLearning={setLearningStat} />
+        <PersonalWorkStat personalWorkStat={personalWorkStat} setPersonalWork={setPersonalWorkStat} />
+        <StressStat stressStat={stressPoints} setStress={setStress} />
       </nav>
       <div style={{ marginTop: '120px' }}>
         {/* Content goes here - this pushes content below the fixed navbar */}

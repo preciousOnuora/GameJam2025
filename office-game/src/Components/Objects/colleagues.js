@@ -8,7 +8,11 @@ function Colleague({ x, y, sprite, speech }) {
       <img
         src={sprite}
         alt="Colleague"
-        style={{ width: "80px", height: "80px" }}
+        style={{ 
+          width: "80px", 
+          height: "80px",
+          animation: "bounce 1s infinite"
+        }}
       />
 
       {/* Speech bubble */}

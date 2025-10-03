@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Sprite from "./Components/Sprite/";
 import CoffeeMachine from "./Components/Objects/CoffeeMachine";
+import StressStat from "../Components/Stats/StressStat.jsx";
+import BonusSound from "../Sounds/BonusSound.jsx";
 
 // Main component for the coffee task
 export default function CoffeeTask({ onComplete }) {
@@ -41,6 +43,8 @@ export default function CoffeeTask({ onComplete }) {
 
       {/* Coffee machine image, positioned using constants */}
       <CoffeeMachine x={coffeeMachineX} y={coffeeMachineY} />
+      <StressStat stressStat={stressStat} setStress={+7} />
+      <BonusSound />
     </div>
   );
 }

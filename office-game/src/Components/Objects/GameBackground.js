@@ -1,19 +1,22 @@
 // GameBackground.js
 import React from "react";
-import officeStart from '../../sprites/background/BackgroundTestIMG.png';
+import officeStart from '../../sprites/background/BackgroundTestIMGG.png';
 
 function GameBackground() {
   return (
     <div
       style={{
-        position: "absolute",
-        top: 0,
+        position: "fixed",
+        top: 50,
         left: 0,
         width: "100vw",
-        height: "100vh",
+        height: "90vh",
         backgroundImage: `url(${officeStart})`,
-        backgroundSize: "cover",
+        backgroundSize: "contain", // Changed from "cover" to "contain"
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f0f0f0", // Add background color for empty spaces
+        zIndex: -1
       }}
     />
   );

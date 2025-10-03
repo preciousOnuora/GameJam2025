@@ -1,4 +1,7 @@
+import React from 'react';
+
 function PersonalWorkStat({ personalWorkStat, setPersonalWork }) {
+    
     // Define 5 different colors for the grid items
     const colors = [
         '#B80F0A', // Red

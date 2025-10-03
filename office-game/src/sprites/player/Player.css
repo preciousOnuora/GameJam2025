@@ -1,0 +1,68 @@
+.jenny-bounce { 
+
+    width: 120px;         /* adjust to your sprite size */ 
+  
+    animation: bounce 1s infinite; 
+  
+    margin-bottom: 20px; 
+  
+  } 
+  
+   
+  
+  @keyframes bounce { 
+  
+    0%, 100% { 
+  
+      transform: translateY(0); 
+  
+    } 
+  
+    50% { 
+  
+      transform: translateY(-20px); /* jump height */ 
+  
+    } 
+  
+  } 
+
+  .precious-sprite { 
+
+    width: 120px;         /* adjust to your sprite size */ 
+
+    animation: bounce 1s infinite; 
+
+    margin-bottom: 20px; 
+
+  } 
+
+  .emma-sprite { 
+
+    width: 120px;         /* adjust to your sprite size */ 
+
+    animation: bounce 1s infinite; 
+
+    margin-bottom: 20px; 
+
+  } 
+
+  .catherine-sprite { 
+
+    width: 120px;         /* adjust to your sprite size */ 
+
+    animation: bounce 1s infinite; 
+
+    margin-bottom: 20px; 
+
+  } 
+
+  .alona-sprite { 
+
+    width: 120px;         /* adjust to your sprite size */ 
+
+    animation: bounce 1s infinite; 
+
+    margin-bottom: 20px; 
+
+  } 
+  

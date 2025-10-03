@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import JennyImg from "../../sprites/player/Jenny/Jenny-closemouth.png";
+import React, { useState, useEffect, useCallback } from "react";
+import JennyImg from "./Jenny-closemouth.png";
 
 function Sprite({
   cupX,
@@ -15,14 +15,15 @@ function Sprite({
   bossY,
   onStartBossQuiz,
   setPlayerPos,
-  colleagues
+  colleagues,
+  onColleagueTalk
 }) {
-  const [x, setX] = useState(100);
-  const [y, setY] = useState(100);
+  const [x, setX] = useState(220);
+  const [y, setY] = useState(370);
   const step = 10;
   const [showLabel, setShowLabel] = useState("");
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback((event) => {
     let moved = false;
 
     switch (event.key) {
@@ -44,10 +45,14 @@ function Sprite({
         break;
       case " ":
         // Coffee
-        if (Math.abs(x - cupX) < 50 && Math.abs(y - cupY) < 50) onFillCoffee();
+        if (Math.abs(x - cupX) < 50 && Math.abs(y - cupY) < 50) {
+          onFillCoffee();
+        }
 
         // Printer
-        if (Math.abs(x - printerX) < 50 && Math.abs(y - printerY) < 50) onUsePrinter();
+        if (Math.abs(x - printerX) < 50 && Math.abs(y - printerY) < 50) {
+          onUsePrinter();
+        }
 
         // Computer
         if (Math.abs(x - computerX) < 50 && Math.abs(y - computerY) < 50) onUseComputer();
@@ -71,7 +76,7 @@ function Sprite({
             }
           });
           if (nearest && minDist < 150) {
-            nearest.onTalk?.();
+            onColleagueTalk?.(nearest.id);
           }
         }
         break;
@@ -80,12 +85,14 @@ function Sprite({
     }
 
     if (moved) setPlayerPos({ x, y });
-  };
+  }, [x, y, cupX, cupY, printerX, printerY, computerX, computerY, bossX, bossY, colleagues, onFillCoffee, onUsePrinter, onUseComputer, onStartBossQuiz, onColleagueTalk, setPlayerPos]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [x, y, colleagues]);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   useEffect(() => {
     // Object labels
@@ -130,6 +137,7 @@ function Sprite({
     setShowLabel("");
   }, [x, y, cupX, cupY, printerX, printerY, computerX, computerY, colleagues, bossX, bossY]);
 
+  
   return (
     <>
       <img
