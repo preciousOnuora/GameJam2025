@@ -1,54 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StartImg from './start.jpeg';
 import StartButton from './StartButton.png';
 import JennyImg from '../../player/Jenny/Jenny-closemouth.png';
-import GameSound from '../../../Sounds/gameSound.mp3';
 
 export default function StartPage({ onStart }) {
   const [showInstructions, setShowInstructions] = useState(false);
-  const [soundStarted, setSoundStarted] = useState(false);
 
-  // Try to start sound on first user interaction (without overlap)
-  useEffect(() => {
-    const tryStartSound = () => {
-      if (soundStarted) {
-        console.log('StartPage: Sound already started, skipping');
-        return;
-      }
-      
-      console.log('StartPage: Attempting to start sound on user interaction');
-      const audio = new Audio(GameSound);
-      audio.loop = true;
-      audio.volume = 0.3;
-      
-      audio.play().then(() => {
-        console.log('✅ StartPage: Sound started successfully on user interaction');
-        setSoundStarted(true);
-      }).catch(error => {
-        console.log('❌ StartPage: Sound failed on user interaction:', error);
-      });
-    };
-
-    // Try to start sound on any user interaction
-    const handleUserInteraction = () => {
-      tryStartSound();
-      // Remove listeners after first interaction
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-    };
-
-    // Add listeners for user interaction
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('keydown', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
-
-    return () => {
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-    };
-  }, [soundStarted]);
 
   const handleStart = () => {
     console.log('Start button clicked'); // Debug log
@@ -129,23 +86,6 @@ export default function StartPage({ onStart }) {
         />
       </div>
 
-      {/* Sound indicator */}
-      {!soundStarted && (
-        <div style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          color: '#ff69b4',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          fontFamily: "'Press Start 2P', monospace",
-          fontSize: '12px',
-          border: '2px solid #ff69b4'
-        }}>
-          🔊 Click anywhere to start music
-        </div>
-      )}
 
       {/* Start button in bottom right corner */}
       <button
