@@ -1,6 +1,6 @@
 // GameBackground.js
 import React from "react";
-import officeStart from '../../sprites/background/BackgroundIMG.png';
+import officeStart from '../../sprites/background/BackgroundTestIMG.png';
 
 function GameBackground() {
   return (

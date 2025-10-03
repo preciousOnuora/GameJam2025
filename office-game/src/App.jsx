@@ -34,9 +34,10 @@ const startBossQuiz = () => {
   const [cupFilling, setCupFilling] = useState(false);
   const [printerActive, setPrinterActive] = useState(false);
 
-  // Boss quiz
-  const [quizAvailable, setQuizAvailable] = useState(true);
-  const [showQuiz, setShowQuiz] = useState(false);
+  // Boss quiz (locked until tasks are done)
+const [quizAvailable, setQuizAvailable] = useState(false);
+const [showQuiz, setShowQuiz] = useState(false);
+
 
   // Colleague interaction
   const [speakingColleague, setSpeakingColleague] = useState(null);
@@ -65,8 +66,7 @@ const startBossQuiz = () => {
   const colleagues = [
     { id: 1, name: "Alona", sprite: ColleagueAlona, x: 200, y: 300, fact: "Core value: Keep client data confidential." },
     { id: 2, name: "Catherine", sprite: ColleagueCatherine, x: 400, y: 350, fact: "Report security breaches immediately." },
-    { id: 3, name: "Emma", sprite: ColleagueEmma, x: 600, y: 250, fact: "Shred sensitive documents when done." },
-{ id: 3, name: "Emma", sprite: ColleagueEmma, x: 600, y: 250, fact: "Shred sensitive documents when done." }, { id: 5, name: "Precious", sprite: ColleaguePrecious, x: 450, y: 450, fact: "Daily reports are due by 5 PM." }, { id: 6, name: "Blonde Staff", sprite: ColleagueBlonde, x: 700, y: 400, fact: "Always check client information twice." }, { id: 7, name: "Dirty Blonde Glasses Staff", sprite: ColleagueDirtyBlondeGlassesStaff, x: 550, y: 300, fact: "Never leave sensitive documents unattended." }, { id: 8, name: "Pink Staff", sprite: ColleaguePinkStaff, x: 350, y: 200, fact: "Confidential conversations should be in private rooms." }, { id: 9, name: "Tamie", sprite: ColleagueTamie, x: 600, y: 500, fact: "Use secure channels for client communication." }, { id: 10, name: "Brown hair Staff", sprite: ColleagueBrownhairStaff, x: 650, y: 200, fact: "Use secure channels for client communication." },  ];
+ { id: 3, name: "Emma", sprite: ColleagueEmma, x: 600, y: 250, fact: "Shred sensitive documents when done." }, { id: 5, name: "Precious", sprite: ColleaguePrecious, x: 450, y: 450, fact: "Daily reports are due by 5 PM." }, { id: 6, name: "Blonde Staff", sprite: ColleagueBlonde, x: 700, y: 400, fact: "Always check client information twice." }, { id: 7, name: "Dirty Blonde Glasses Staff", sprite: ColleagueDirtyBlondeGlassesStaff, x: 550, y: 300, fact: "Never leave sensitive documents unattended." }, { id: 8, name: "Pink Staff", sprite: ColleaguePinkStaff, x: 350, y: 200, fact: "Confidential conversations should be in private rooms." }, { id: 9, name: "Tamie", sprite: ColleagueTamie, x: 600, y: 500, fact: "Use secure channels for client communication." }, { id: 10, name: "Brown hair Staff", sprite: ColleagueBrownhairStaff, x: 650, y: 200, fact: "Use secure channels for client communication." },  ];
 
   // Coffee
   const handleFillCoffee = () => {
@@ -148,6 +148,12 @@ const startBossQuiz = () => {
     return () => window.removeEventListener("keydown", handleSpacebar);
   }, [jennyX, jennyY, quizAvailable, talkedColleagues]);
 
+  useEffect(() => {
+  const allDone = tasks.every(task => task.done);
+  setQuizAvailable(allDone);
+}, [tasks]);
+
+
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>🏦 Lloyds Bank Office Game</h1>
@@ -162,6 +168,7 @@ const startBossQuiz = () => {
       {colleagues.map(col => (
         <Colleague key={col.id} x={col.x} y={col.y} sprite={col.sprite} speech={speakingColleague === col.id ? col.fact : null} />
       ))}
+      
 
       {/* Jenny */}
 <Sprite
